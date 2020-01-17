@@ -19,6 +19,7 @@ class RecipesController < ApplicationController
   def show
     @rating = Rating.find(params[:rating_id])
     @recipe = Recipe.find(params[:id])
+    @tags = Tag.all
     render :show
   end
 
@@ -31,7 +32,11 @@ class RecipesController < ApplicationController
   def update
     @rating = Rating.find(params[:rating_id])
     @recipe = Recipe.find(params[:id])
-    if @recipe.update(recipe_params)
+    @tags = Tag.all
+    if params.has_key?(:selected)
+      @recipe.tags << Tag.find(params[:selected].fetch(:tag_id))
+      render :show
+    elsif @recipe.update(recipe_params)
       flash[:alert] = "You updated that!"
       redirect_to rating_path(@recipe.rating)
     else

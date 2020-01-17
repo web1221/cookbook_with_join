@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :ratings do
     resources :recipes
   end
+  resources :tags
 end

@@ -9,8 +9,19 @@
   <% end %>
 </ul>
 <h3>Instructions: <%= @recipe.instructions %></h3>
+<h4>Tags:</h4>
+<ul>
+<% @recipe.tags.each do |tag| %>
+  <li><%= tag.label %></li>
+<% end %>
+</ul>
 
-
+<% if @tags.any? %>
+<%= form_for [@rating, @recipe] do |f| %>
+<%= collection_select(:selected, :tag_id, @tags, :id, :label) %>
+<%= f.submit 'Add Tag' %>
+<% end %>
+<% end %>
 <p><%= link_to "Edit recipe", edit_rating_recipe_path(@rating, @recipe) %></p>
 <p><%= link_to "Delete recipe", rating_recipe_path(@rating, @recipe),
                         :data => {:confirm => "Are you sure?",

@@ -1,0 +1,12 @@
+<% if @tags.any? %>
+
+<ul>
+  <% @tags.each do |tag| %>
+  <li><%= link_to tag.label, tag_path(tag) %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no tags yet.</p>
+<% end %>
+
+<p><%= link_to "Return to ratings", ratings_path %></p>

@@ -2,14 +2,15 @@
 
 <% if @ratings.any? %>
 
-  <ul>
-    <% @ratings.each do |rating| %>
-      <li><%= link_to rating.difficulty, rating_path(rating) %></li>
-    <% end %>
-  </ul>
+<ul>
+  <% @ratings.each do |rating| %>
+  <li><%= link_to rating.difficulty, rating_path(rating) %></li>
+  <% end %>
+</ul>
 <% else %>
-  <p>There are no ratings yet.</p>
+<p>There are no ratings yet.</p>
 <% end %>
 
 
 <p><%= link_to "Create new rating", new_rating_path %></p>
+<p><%= link_to "Create new tag", new_tag_path %></p>
